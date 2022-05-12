@@ -1,7 +1,12 @@
-<div class="d-flex container mt-4 justify-content-center">
-  <form [formGroup]="userForm">
-    <input type="text" placeholder="Renseigner un nouvel utilisateur" formControlName="name">
-    <button class="btn btn-primary ms-1" [disabled]="!userForm.valid" (click)="addUser()">Valider</button>
-  </form>
-</div>
+<form [formGroup]="userForm" class="mb-4">
+  <div class="row">
+    <div class="col-8">
+      <input class=" form-control" type="text" placeholder="Renseigner un nouvel utilisateur" formControlName="name">
+    </div>
+    <div class="col-4">
+      <button class=" btn btn-primary ms-1" [disabled]="!userForm.valid" (click)="addUser()">Valider</button>
+    </div>
+  </div>
+</form>
+
 

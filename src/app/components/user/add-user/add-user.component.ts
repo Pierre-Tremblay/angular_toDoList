@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../../services/user.service";
 import {User} from "../../../models/user";
 import {FormBuilder, FormGroup} from "@angular/forms";
+import {BehaviorSubject} from "rxjs";
 
 @Component({
   selector: 'app-add-user',
@@ -11,6 +12,7 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 export class AddUserComponent implements OnInit {
 
   user: User = {id: 0, name: ''};
+
   userForm: FormGroup = this.formBuilder.group({
     id: Math.floor(Math.random() * 1000),
     name: ''

@@ -1,10 +1,13 @@
 import {Injectable} from '@angular/core';
 import {User} from "../models/user";
+import {BehaviorSubject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  //Cela créer un observable qui permet de transférer les données en temps réel entre les composants (principe d'émission ou/et de réception)
+  userSub: BehaviorSubject<User> = new BehaviorSubject<User>({} as User);
 
   constructor() {
   }
@@ -21,7 +24,11 @@ export class UserService {
       //Si le localStorage n'a pas la clé users on envoi le user dans ce dernier avec la clé users
       localStorage.setItem("users", JSON.stringify([user]));
     }
+    //Permet d'envoyer en temps réel l'user que l'on a ajouté
+    this.userSub.next(user);
+  }
 
-
+  getUsers() {
+    return JSON.parse(localStorage.getItem("users") as string)
   }
 }

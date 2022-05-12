@@ -1,2 +1,14 @@
-<app-add-user></app-add-user>
 
+
+
+
+<div class="container mt-4">
+  <app-add-user></app-add-user>
+  <select class="form-select mb-4" aria-label="Default select example" [(ngModel)]="user.id">
+    <option value="0" selected disabled>Sélectionner un utilisateur</option>
+    <option [ngValue]="user.id" *ngFor="let user of users, let i = index">
+      {{user.name}}
+    </option>
+  </select>
+  <app-task [idUser]="user.id"></app-task>
+</div>
