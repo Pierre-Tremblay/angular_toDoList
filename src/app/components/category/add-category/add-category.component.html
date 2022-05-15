@@ -1,0 +1,17 @@
+<div>
+  <button class="btn pink-btn w-50" (click)="isAdding = !isAdding" >{{isAdding? 'Fermer l\'ajout de catégorie':'Ajouter une catégorie'}}</button>
+</div>
+
+<div *ngIf="isAdding" class="row">
+  <form [formGroup]="categoryForm" class="mt-4 ">
+    <div class="d-flex justify-content-between ">
+      <div class="col-10">
+        <input class=" form-control" type="text" placeholder="Renseigner une nouvelle catégorie" formControlName="name">
+      </div>
+      <div class="">
+        <button class=" btn color-btn-mine ms-1" [disabled]="!categoryForm.valid" (click)="addCategory()">Ajouter
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

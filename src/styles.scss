@@ -1,1 +1,53 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+.color-btn-mine{
+  background-color: #b898f3;
+  color: #fffbf9;
+  &:hover{
+    background-color: #fffbf9 ;
+    color: #b898f3;
+    border: solid #b898f3 1px;
+  }
+}
+.color-btn-mine-violet{
+  background-color: #8b55ef;
+  color: #fffbf9;
+  border: solid #8b55ef 1px;
+  &:hover{
+    background-color: #fffbf9 ;
+    color: #8b55ef;
+    border: solid #8b55ef 1px;
+  }
+}
+
+.pink-btn{
+  background-color: #d18eae;
+  color: #fffbf9;
+  border: solid #d18eae 1px;
+  &:hover{
+    background-color: #fffbf9 ;
+    color: #d18eae;
+    border: solid #d18eae 1px;
+  }
+}
+
+.to-do{
+  background-color: #D57AA5;
+}
+.done{
+  background-color: #A47FE6;
+}
+
+.hidden-div{
+  display: none;
+}
+.visible-div{
+  display: unset;
+}
+
+
+h1, h4{
+  font-family: 'Shadows Into Light', cursive;
+}
+
+
