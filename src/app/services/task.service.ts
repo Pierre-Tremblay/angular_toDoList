@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Task} from "../models/task";
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -27,6 +28,9 @@ export class TaskService {
       return JSON.parse(<string>localStorage.getItem("tasks")).filter((task: { idUser: number; }) => task.idUser === idUser)
     }
   }
+
+
+
   onSwitchStatus(id:number){
     const tasks = JSON.parse(<string>localStorage.getItem("tasks"))
     tasks.forEach((task : Task) =>{

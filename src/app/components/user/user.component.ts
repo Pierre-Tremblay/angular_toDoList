@@ -34,4 +34,8 @@ export class UserComponent implements OnInit, OnDestroy {
     // A la destruction du component l'écoute du canal est interrompu
     this.userService.userSub.unsubscribe()
   }
+
+onUserChange(){
+    this.userService.getIdUser(this.user.id)
+}
 }

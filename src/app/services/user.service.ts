@@ -8,6 +8,7 @@ import {BehaviorSubject} from "rxjs";
 export class UserService {
   //Cela créer un observable qui permet de transférer les données en temps réel entre les composants (principe d'émission ou/et de réception)
   userSub: BehaviorSubject<User> = new BehaviorSubject<User>({} as User);
+  idUser: BehaviorSubject<number> = new BehaviorSubject<number>(0)
 
   constructor() {
   }
@@ -31,4 +32,9 @@ export class UserService {
   getUsers() {
     return JSON.parse(localStorage.getItem("users") as string)
   }
+
+  getIdUser(id: number) {
+    this.idUser.next(id);
+  }
+
 }

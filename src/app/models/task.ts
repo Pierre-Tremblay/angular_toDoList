@@ -4,4 +4,5 @@ export interface Task {
   description?: string;
   done: boolean;
   idUser: number;
+  idCategory: number;
 }

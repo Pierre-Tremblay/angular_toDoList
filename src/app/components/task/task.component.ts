@@ -10,14 +10,17 @@ import {Task} from "../../models/task";
 })
 export class TaskComponent implements OnInit {
   tasks: Task[] = []
+  idCategory: number = 0
   @Input() idUser: number = 0
   taskForm: FormGroup = this.formBuilder.group({
-    id: Math.floor(Math.random()*1000),
-  title: '',
-  description:'',
-  done:false,
-  idUser: this.idUser
+    id: Math.floor(Math.random() * 1000),
+    title: '',
+    description: '',
+    done: false,
+    idUser: this.idUser,
+    idCategory: this.idCategory
   })
+
 
   constructor(private taskService: TaskService, private formBuilder: FormBuilder) {
   }
@@ -28,31 +31,63 @@ export class TaskComponent implements OnInit {
   ngOnChanges(): void {
     this.getTasks()
 
+
+
+
   }
-  addTask(){
+
+  addTask() {
     this.taskService.addTask({
-      id:Math.floor(Math.random()*1000),
+      id: Math.floor(Math.random() * 1000),
       title: this.taskForm.value.title,
-      description:this.taskForm.value.description,
-      done:false,
-      idUser: this.idUser
+      description: this.taskForm.value.description,
+      done: false,
+      idUser: this.idUser,
+      idCategory: this.idCategory
     });
 
     this.taskForm.reset()
     this.getTasks()
+
   }
 
+
   getTasks() {
+    this.tasks = []
     this.tasks = this.taskService.getTasksByIdUser(this.idUser)
   }
 
-  onSwitchStatus(id:number){
+
+  onSwitchStatus(id: number) {
     this.taskService.onSwitchStatus(id)
-    this.getTasks()
+    this.getTasksByIdCategoryAndUser(this.idCategory, this.idUser)
   }
 
-  deleteTask(id:number){
+  deleteTask(id: number) {
     this.taskService.deleteTask(id)
-    this.getTasks()
+    this.getTasksByIdCategoryAndUser(this.idCategory, this.idUser)
   }
+
+  onChangeCategory(idCategory: number) {
+    this.idCategory = idCategory
+    this.getTasksByIdCategoryAndUser(this.idCategory, this.idUser)
+  }
+
+  getTasksByIdCategoryAndUser(idCategory: number, idUser: number) {
+
+    let filteredTasks: Task[] = []
+    this.tasks = [];
+    this.getTasks();
+    if(idCategory == 0){
+      return this.getTasks()
+    }
+    this.tasks.forEach((task: Task) => {
+      if (task.idCategory === idCategory && task.idUser === idUser) {
+        filteredTasks.push(task)
+      }
+    })
+    return this.tasks = filteredTasks
+
+  }
+
 }
